@@ -47,7 +47,7 @@ public class Conv extends JFrame{
             if ((num >= 48 && num <= 57) || (num >= 65 && num <= 70)) {
                 for (int i = 0; i < inData.getText().length(); i++) {
                     int next = 0;
-                    if (num < 58)
+                    if ((int)inData.getText().toCharArray()[i] < 58)
                         next = (int)inData.getText().toCharArray()[i] - 48;
                     else
                         next = (int)inData.getText().toCharArray()[i] - 55;
