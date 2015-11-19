@@ -41,10 +41,10 @@ public class Conv extends JFrame{
         }
 
         @Override
-        public void keyReleased(KeyEvent e) {
-            int num = (int)inData.getText().toCharArray()[inData.getText().length() - 1];
+        public void keyReleased(KeyEvent e) { //Событие при нажатии кнопки
+            int num = (int)inData.getText().toCharArray()[inData.getText().length() - 1]; //Получаем последний введенный символ
             int max = 0;
-            if ((num >= 48 && num <= 57) || (num >= 65 && num <= 70)) {
+            if ((num >= 48 && num <= 57) || (num >= 65 && num <= 70)) { //По ASCII коду определяем введенное число, и ищем максимальное
                 for (int i = 0; i < inData.getText().length(); i++) {
                     int next = 0;
                     if ((int)inData.getText().toCharArray()[i] < 58)
@@ -57,10 +57,10 @@ public class Conv extends JFrame{
 
                 numeralIn.removeAllItems();
                 for (int i = max + 1; i <= 16; i++) {
-                    numeralIn.addItem(i);
+                    numeralIn.addItem(i); //Заполняем элемент возможными вариантами оснований системм счисления
                 }
                 errMess.setText("");
-            } else {
+            } else { //если был введен неверный символ
                 numeralIn.removeAllItems();
                 errMess.setText("Неверные данные");
             }
@@ -83,7 +83,7 @@ public class Conv extends JFrame{
             }
             */
 
-            String bufS = inData.getText();
+            String bufS = inData.getText(); //по нажатию "Ввод" переводим введенные символы в верхний регистр
             inData.setText(bufS.toUpperCase());
 
             //inData.setText(inData.getText().toUpperCase());
@@ -99,12 +99,12 @@ public class Conv extends JFrame{
             t = "" + fromDec(next, (int)numeralOut.getSelectedItem());
             outData.setText(t);
             */
-
+            //Переводим числа (см. ConvertMethod.java)
             outData.setText(fromDecNew(toDecNew(inData.getText(), (int)numeralIn.getSelectedItem()), (int)numeralOut.getSelectedItem()));
         }
     };
 
-    public Conv() {
+    public Conv() { // Вешаем обрабтчики событий и создаем, упаковываем элементы окна
         exit.addActionListener(exitAction);
         inData.addActionListener(rangeNumeral);
         inData.addKeyListener(re);
